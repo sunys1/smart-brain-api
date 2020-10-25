@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
@@ -22,8 +21,8 @@ const db = knex({
 
 const app = express();
 
-app.use(cors())
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res)=> { res.send(db.users) })
 app.post('/signin', signin.handleSignin(db, bcrypt))
